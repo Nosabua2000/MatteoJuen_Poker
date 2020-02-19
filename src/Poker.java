@@ -7,7 +7,7 @@ public class Poker {
 
     public static void initArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            array[i] = i + 1;
+            array[i] = i;
         }
     }
 
@@ -22,11 +22,13 @@ public class Poker {
         return (card % CardsPerColor);
     }
 
+
+
     public static int CardValue(int card) {
         return (card / CardsPerColor);
     }
 
-    public static String[] determineCardType(int cards[]) {
+    public static String[] CardValue(int cards[]) {
         String[] cardT = new String[5];
         for (int i = 0; i < cards.length; i++) {
             int handCardsValue = (cards[i] / CardsPerColor);
@@ -49,5 +51,17 @@ public class Poker {
             }
         }
         return cardT;
+    }
+
+    public static int countDuplicates(int cards[]) {
+        int duplicates = 0;
+        for (int i = 0; i < cards.length; i++) {
+            for (int j = 0; j < cards.length; j++) {
+                if ((cards[i] % CardsPerColor == cards[j] % CardsPerColor) && i != j) {
+                    duplicates++;
+                }
+            }
+        }
+        return duplicates;
     }
 }

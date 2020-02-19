@@ -3,7 +3,9 @@ public class Poker {
     public static final int CardsPerColor = 13;
     public static final int handCards = 5;
     public static final int[] CardDeck = new int[totalCards];
-
+    //Ass, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Dame, König -> Ass, 2...
+    // 0,  1, 2, 3, 4, 5, 6, 7, 8, 9,  10,   11,   12,      13, 14...
+    //0%13 = 0 -> Ass   13%13 = 0 -> Ass
 
     public static void initArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
@@ -53,15 +55,28 @@ public class Poker {
         return cardT;
     }
 
-    public static int countDuplicates(int cards[]) {
-        int duplicates = 0;
+    public static int DupeValues(int cards[]) {
+        int duplicateValues = 0;
         for (int i = 0; i < cards.length; i++) {
             for (int j = 0; j < cards.length; j++) {
                 if ((cards[i] % CardsPerColor == cards[j] % CardsPerColor) && i != j) {
-                    duplicates++;
+                    duplicateValues++;
                 }
             }
         }
-        return duplicates;
+        return duplicateValues;
     }
+
+    public static int countDuplicateTypes(int cards[]) {
+        int duplicateColors = 0;
+        for (int i = 0; i < cards.length; i++) {
+            for (int j = 0; i < cards.length; i++) {
+                if ((cards[i] / CardsPerColor == cards[j] / CardsPerColor) && i != j) {
+                    duplicateColors++;
+                }
+            }
+        }
+        return duplicateColors;
+    }
+
 }

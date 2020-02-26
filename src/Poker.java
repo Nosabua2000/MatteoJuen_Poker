@@ -13,13 +13,19 @@ public class Poker {
         }
     }
 
-    public static int[] dealhandCards(int[] array) {
-        int[] hand = new int[handCards];
-        for (int i = 0; i < hand.length; i++) {
-            //   hand[i] = array[i];
+    public static int[] deal(int[] cardarray,int number){
+        int[]  random = new int[number];
+        for(int i=0;i<number;i++){
+            int rand = (int)(Math.random()*(cardarray.length-1-i));
+            random[i] = cardarray[rand];
+            int storage = cardarray[rand];
+            cardarray[rand] = cardarray[cardarray.length-1-i];
+            cardarray[cardarray.length-1-i] = storage;
         }
-        return hand;
+        return random;
     }
+
+
     public static int CardColor(int card) {
         return (card % CardsPerColor);
     }
@@ -30,32 +36,8 @@ public class Poker {
         return (card / CardsPerColor);
     }
 
-    public static String[] CardValue(int cards[]) {
-        String[] cardT = new String[5];
-        for (int i = 0; i < cards.length; i++) {
-            int handCardsValue = (cards[i] / CardsPerColor);
-            switch(handCardsValue) {
-                case 0:
-                    cardT[i] = "Herz";
-                    break;
 
-                case 1:
-                    cardT[i] = "Kreuz";
-                    break;
-
-                case 2:
-                    cardT[i] = "Pik";
-                    break;
-
-                case 3:
-                    cardT[i] = "Karo";
-                    break;
-            }
-        }
-        return cardT;
-    }
-
-    public static int DupeValues(int cardarray[]) {
+    public static int DupeValues(int[] cardarray) {
         int duplicateValues = 0;
         for (int i = 0; i < cardarray.length; i++) {
             for (int j = 0; j < cardarray.length; j++) {
@@ -67,7 +49,7 @@ public class Poker {
         return duplicateValues;
     }
 
-    public static int DupeTypes(int cardarray[]) {
+    public static int DupeTypes(int[] cardarray) {
         int duplicateColors = 0;
         for (int i = 0; i < cardarray.length; i++) {
             for (int j = 0; i < cardarray.length; i++) {
@@ -77,6 +59,32 @@ public class Poker {
             }
         }
         return duplicateColors;
+    }
+
+    public static boolean checkForOnePair(int[] cards) {
+        return DupeValues(cards) == 2;
+    }
+
+    public static boolean checkForTwoPairs(int[] cards) {
+        return DupeValues(cards) == 4;
+    }
+
+    public static boolean checkForThreeOfAKind(int[] cards) {
+        return DupeValues(cards) == 6;
+    }
+    public static boolean checkForStraight(int[] cards) {
+        if (cards[0] == 0 && cards[1] == 1 && cards[2] == 2 && cards[3] == 3 && cards[4] == 12)
+            return true;
+        for (int i = 1; i < cards.length; i++) {
+            if (CardValue(cards[i]) - CardValue(cards[i - 1])) != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkForFlush(int[] cards) {
+        return countDuplicateTypes(cards) == 4;
     }
 
 }

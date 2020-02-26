@@ -55,11 +55,11 @@ public class Poker {
         return cardT;
     }
 
-    public static int DupeValues(int cards[]) {
+    public static int DupeValues(int cardarray[]) {
         int duplicateValues = 0;
-        for (int i = 0; i < cards.length; i++) {
-            for (int j = 0; j < cards.length; j++) {
-                if ((cards[i] % CardsPerColor == cards[j] % CardsPerColor) && i != j) {
+        for (int i = 0; i < cardarray.length; i++) {
+            for (int j = 0; j < cardarray.length; j++) {
+                if ((cardarray[i] % CardsPerColor == cardarray[j] % CardsPerColor) && i != j) {
                     duplicateValues++;
                 }
             }
@@ -67,11 +67,11 @@ public class Poker {
         return duplicateValues;
     }
 
-    public static int countDuplicateTypes(int cards[]) {
+    public static int DupeTypes(int cardarray[]) {
         int duplicateColors = 0;
-        for (int i = 0; i < cards.length; i++) {
-            for (int j = 0; i < cards.length; i++) {
-                if ((cards[i] / CardsPerColor == cards[j] / CardsPerColor) && i != j) {
+        for (int i = 0; i < cardarray.length; i++) {
+            for (int j = 0; i < cardarray.length; i++) {
+                if ((cardarray[i] / CardsPerColor == cardarray[j] / CardsPerColor) && i != j) {
                     duplicateColors++;
                 }
             }

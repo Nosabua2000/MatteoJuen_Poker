@@ -2,8 +2,8 @@ public class Poker {
     public static final int totalCards = 52;
     public static final int CardsPerColor = 13;
     public static final int handCards = 5;
-    public static final int[] CardDeck = new int[totalCards];
-    public static boolean royalflash = false;
+    public static final int[] deck = new int[totalCards];
+    public static boolean royalflushc = false;
     //Ass, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Dame, König -> Ass, 2...
     // 0,  1, 2, 3, 4, 5, 6, 7, 8, 9,  10,   11,   12,      13, 14...
     //0%13 = 0 -> Ass   13%13 = 0 -> Ass
@@ -49,7 +49,7 @@ public class Poker {
         return duplicateValues;
     }
 
-    public static int dupeTypes(int[] cardarray) {
+    public static int dupeColors(int[] cardarray) {
         int duplicateColors = 0;
         for (int i = 0; i < cardarray.length; i++) {
             for (int j = 0; i < cardarray.length; i++) {
@@ -85,7 +85,7 @@ public class Poker {
     }
 
     public static boolean flush(int[] cards) {
-        return dupeTypes(cards) == 4;
+        return dupeColors(cards) == 4;
     }
 
     public static boolean fullHouse(int[] cards) {
@@ -97,7 +97,7 @@ public class Poker {
     }
 
     public static boolean straightFlush(int[] cards) {
-        return straight(cards) && flush(cards);
+        return (straight(cards) && flush(cards));
     }
 
     public static boolean royalFlush(int[] cards) {
@@ -106,13 +106,13 @@ public class Poker {
             storage = cardValue(cards[0]);
             for (int i = 1; i < cards.length - 1; i++) {
                 if (storage + 1 == cardValue(cards[i])) {
-                    royalflash = true;
+                    royalflushc = true;
                     storage = cardValue(cards[i]);
                 } else {
-                    royalflash = false;
+                    royalflushc = false;
                 }
             }
         }
-        return royalflash;
+        return royalflushc;
     }
 }

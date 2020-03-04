@@ -7,9 +7,11 @@ public class main {
         int[] handCards = Poker.deal(Poker.deck, Poker.handCards);
         System.out.println("Die gezogenen Karten sind");
         System.out.println(Arrays.toString(handCards));
+        Arrays.sort(handCards);
 
 
         //Es wird durchgaenge-mal durchlaufen und sammelt die daten wie oft etwas vorhanden ist im Array
+
         final int durchgaenge = 1000000;
         int[] count = new int[9];
         for (int i = 0; i <= durchgaenge; i++) {
@@ -41,6 +43,7 @@ public class main {
 
             if (Poker.royalFlush(handCards))
                 count[8]++;
+
         }
         //alle Wahrscheinlichkeiten werden mit count ausgerechnet
         float[] warsch = new float[9];
@@ -49,5 +52,6 @@ public class main {
             warsch[i] = (float)count[i] / durchgaenge * 100;
             System.out.printf("%2d. %-20s %1.4f%%\n",  i + 1, c[i], warsch[i]);
         }
+
     }
 }

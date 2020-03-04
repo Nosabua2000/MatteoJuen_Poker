@@ -28,12 +28,12 @@ public class Poker {
 
 
     public static int cardColor(int card) {
-        return (card % CardsPerColor);
+        return (card / CardsPerColor);
     }
 
 
     public static int cardValue(int card) {
-        return (card / CardsPerColor);
+        return (card % CardsPerColor);
     }
 
 
@@ -76,13 +76,14 @@ public class Poker {
     public static boolean straight(int[] cards) {
         if (cards[0] == 0 && cards[1] == 1 && cards[2] == 2 && cards[3] == 3 && cards[4] == 12)
             return true;
-        for (int i = 1; i < cards.length; i++) {
-            if ((cardValue(cards[i]) - cardValue(cards[i - 1])) != 1) {
+        for (int i = 0; i < cards.length - 1; i++) {
+            if ((cardValue(cards[i]) - cardValue(cards[i + 1])) !=  -1) {
                 return false;
             }
         }
         return true;
     }
+
 
     public static boolean flush(int[] cards) {
         return dupeColors(cards) == 4;
@@ -99,6 +100,7 @@ public class Poker {
     public static boolean straightFlush(int[] cards) {
         return (straight(cards) && flush(cards));
     }
+
 
     public static boolean royalFlush(int[] cards) {
         int storage = cardValue(cards[cards.length - 1]);

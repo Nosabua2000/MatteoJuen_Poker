@@ -103,18 +103,20 @@ public class Poker {
 
 
     public static boolean royalFlush(int[] cards) {
+        boolean royalFlush = false;
         int storage = cardValue(cards[cards.length - 1]);
         if (storage == 0) {
             storage = cardValue(cards[0]);
             for (int i = 1; i < cards.length - 1; i++) {
                 if (storage + 1 == cardValue(cards[i])) {
-                    royalflushc = true;
+                    royalFlush = true;
                     storage = cardValue(cards[i]);
                 } else {
-                    royalflushc = false;
+                    royalFlush = false;
+                    break;
                 }
             }
         }
-        return royalflushc;
+        return royalFlush;
     }
 }

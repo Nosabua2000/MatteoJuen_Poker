@@ -47,7 +47,7 @@ public class main {
         }
         //alle Wahrscheinlichkeiten werden mit count ausgerechnet
         float[] warsch = new float[9];
-        String[] c = {"paar", "zwei paare", "drilling", "straight", "flush", "fullhouse", "vierling", "straight-flush", "royalflush"};
+        String[] c = {"paar", "zwei paare", "drilling", "straight", "flush", "fullhouse", "vierling", "straight-flush", "royalflush", "Highcard"};
         for (int i = 0; i < count.length; i++) {
             warsch[i] = (float)count[i] / durchgaenge * 100;
             System.out.printf("%2d. %-20s %1.4f%%\n",  i + 1, c[i], warsch[i]);
